@@ -242,10 +242,17 @@
     <p>Watch the 2025 video below:</p>
 
     <div class="video-card">
-      <video controls>
-        <source src="https://youtube.com/shorts/E5bEXOFjHX0?feature=share">
-        Your browser does not support the video tag.
-      </video>
+      <div style="position: relative; width: 100%; max-width: 640px; height: 360px;">
+        <iframe 
+          width="100%" 
+          height="100%" 
+          src="https://www.youtube.com/embed/E5bEXOFjHX0" 
+          title="Video Demo" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
 
     <button class="back-btn" onclick="goBack()">Back</button>
