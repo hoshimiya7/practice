@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+      linear-gradient(135deg, rgba(168,85,247,0.18), rgba(255,255,255,0.95)),
+      repeating-linear-gradient(
+        45deg,
+        #f3e8ff,
+        #f3e8ff 20px,
+        #ffffff 20px,
+        #ffffff 40px
+      );
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #4a044e;
+      padding: 2rem;
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #f0abfc;
+      outline: none;
+      font-size: 1rem;
+      background: #fff;
+      color: #4a044e;
+    }
+
+    button {
+      width: 60%;
+      padding: 0.75rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #f472b6, #c084fc);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+      margin: 1rem auto 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    .error {
+      color: #f87171;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* Dashboard */
+    .dashboard {
+      display: none;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .tile {
+      background: #374151;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .tile:hover {
+      transform: translateY(-5px);
+      background: #4b5563;
+    }
+
+    .page {
+      display: none;
+      text-align: center;
+    }
+
+    .back-btn {
+      margin-top: 2rem;
+      background: #10b981;
+    }
+  
+    .logout-btn {
+      background: linear-gradient(135deg, #fb7185, #f43f5e);
+      width: auto;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 0.9rem;
+    }
+
+    .logout-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Card -->
+  <div class="card" id="loginCard">
+    <h1>🔐 Login 💖</h1>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <div class="error" id="error"></div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <h1 style="text-align:center; margin-bottom:2rem;">Select a Year</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+    <div class="tiles">
+      <div class="tile" onclick="openPage('2020')">2020</div>
+      <div class="tile" onclick="openPage('2021')">2021</div>
+      <div class="tile" onclick="openPage('2022')">2022</div>
+      <div class="tile" onclick="openPage('2023')">2023</div>
+      <div class="tile" onclick="openPage('2024')">2024</div>
+      <div class="tile" onclick="openPage('2025')">2025</div>
+    </div>
+  </div>
+
+  <!-- Example Year Pages -->
+  <div class="card page" id="page-2020">
+    <h1>Year 2020</h1>
+    <p>Content for 2020 goes here.</p>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <div class="card page" id="page-2021">
+    <h1>Year 2021</h1>
+    <p>Content for 2021 goes here.</p>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <div class="card page" id="page-2022">
+    <h1>Year 2022</h1>
+    <p>Content for 2022 goes here.</p>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <div class="card page" id="page-2023">
+    <h1>Year 2023</h1>
+    <p>Content for 2023 goes here.</p>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <div class="card page" id="page-2024">
+    <h1>Year 2024</h1>
+    <p>Content for 2024 goes here.</p>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <div class="card page" id="page-2025">
+    <h1>Year 2025</h1>
+    <p>Content for 2025 goes here.</p>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    // Predetermined users (CLIENT SIDE ONLY)
+    const users = [
+      { username: "admin", password: "1234" },
+      { username: "user", password: "pass" }
+    ];
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("error");
+
+      const found = users.find(u => u.username === username && u.password === password);
+
+      if (found) {
+        document.getElementById("loginCard").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+      } else {
+        error.textContent = "Invalid username or password";
+      }
+    }
+
+    function openPage(year) {
+      document.getElementById("dashboard").style.display = "none";
+      document.getElementById(`page-${year}`).style.display = "block";
+    }
+
+    function goBack() {
+      document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+      document.getElementById("dashboard").style.display = "block";
+    }
+
+    function logout() {
+        document.getElementById("dashboard").style.display = "none";
+        document.getElementById("loginCard").style.display = "block";
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+    }
+
+  </script>
+
+</body>
+</html>
